@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Currency Tracker</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body style="background-color: #3c3c3c; overflow: hidden;">
+    
+    <h4 style="text-align: center; margin-top: 28vh; color: aliceblue;">Real Time USD/TRY & EUR/TRY PRICE</h4>
+    <table style="margin:0 auto;" class="mdl-data-table mdl-js-data-table">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">#</th>
+                <th>Buy</th>
+                <th>Sell</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="dollar" class="mdl-data-table__cell--non-numeric"></td>
+                <td id="buyUSD"></td>
+                <td id="sellUSD"></td>
+            </tr>
+            <tr>
+                <td id="eur" class="mdl-data-table__cell--non-numeric"></td>
+                <td id="buyEUR"></td>
+                <td id="sellEUR"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<style>
+    .mdl-data-table th{
+        background-color: #568bff;
+        
+    }
+    .mdl-data-table td{
+        background-color: #568bff;
+        color:aliceblue;
+    }
+
+</style>
+<script>
+    
+    async function getData() {
+        let response = await fetch('http://localhost:3000/api/currency');
+        let data = await response.text()
+        data = JSON.parse(data)
+        console.log(data)
+        document.getElementById("dollar").innerHTML = 'Dollar'
+        document.getElementById("buyUSD").innerHTML = data[1].buyPrice
+        document.getElementById("sellUSD").innerHTML = data[1].sellPrice
+        
+        document.getElementById("eur").innerHTML = 'Euro'
+        document.getElementById("buyEUR").innerHTML = data[3].buyPrice
+        document.getElementById("sellEUR").innerHTML = data[3].sellPrice
+        document.getElementById("")
+        setTimeout(getData, 1000);
+
+    }
+
+    getData();
+
+
+</script>
+
+</html>
