@@ -42,4 +42,4 @@ app.get('/api/currency/', async (req, res) => {
   ]));
 })
 let PORT = process.env.PORT || 3000
-app.listen(PORT, 'localhost')
+app.listen(PORT)
