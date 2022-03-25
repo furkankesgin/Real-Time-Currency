@@ -41,5 +41,5 @@ app.get('/api/currency/', async (req, res) => {
     'https://kur.doviz.com/serbest-piyasa/euro'
   ]));
 })
-PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 app.listen(PORT, 'localhost')
